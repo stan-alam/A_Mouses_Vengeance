@@ -35,6 +35,16 @@
 			"label": "Add tasks.json",
 			"type": "shell",
 			"command": "git add .vscode/tasks.json"
+		},
+		{
+			"label": "Commit with message",
+			"type": "shell",
+			"command": "echo 'Revert to last working run' | git commit -F -"
+		},
+		{
+			"label": "Push to remote",
+			"type": "shell",
+			"command": "git push"
 		}
 	]
 }
