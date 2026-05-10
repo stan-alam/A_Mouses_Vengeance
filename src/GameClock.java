@@ -3,7 +3,6 @@ import java.awt.*;
 public class GameClock {
 
 	private int framesPerSecond;
-	private int changeFramesPerSecond;
 	private int size;
 	private int positionx;
 	private int positiony;

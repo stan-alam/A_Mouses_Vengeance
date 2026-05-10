@@ -1,0 +1,40 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Commit Changes",
+			"type": "shell",
+			"command": "git add . && git commit -m \"Revert to last working run\""
+		},
+		{
+			"label": "Commit Changes",
+			"type": "shell",
+			"command": "git add . && git commit -m 'Revert to last working run'"
+		},
+		{
+			"label": "Commit Changes",
+			"type": "shell",
+			"command": "git add . ; git commit -m 'Revert to last working run'"
+		},
+		{
+			"label": "Git Status",
+			"type": "shell",
+			"command": "git status"
+		},
+		{
+			"label": "Commit",
+			"type": "shell",
+			"command": "git commit -m \"Revert to last working run\""
+		},
+		{
+			"label": "Commit",
+			"type": "shell",
+			"command": "git commit -m `\"Revert to last working run`\""
+		},
+		{
+			"label": "Add tasks.json",
+			"type": "shell",
+			"command": "git add .vscode/tasks.json"
+		}
+	]
+}

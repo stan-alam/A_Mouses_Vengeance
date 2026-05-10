@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -25,11 +24,6 @@ public class TopPanel extends JPanel{
 	 * The medium font to draw with.
 	 */
 	private static final Font MEDIUM_FONT = new Font("Tahoma", Font.BOLD, 16);
-
-	/**
-	 * The small font to draw with.
-	 */
-	private static final Font SMALL_FONT = new Font("Tahoma", Font.BOLD, 12);
 	
 	private final int IMAGE_SIZE = 38;
 	
@@ -56,7 +50,7 @@ public class TopPanel extends JPanel{
 		setBackground(Color.LIGHT_GRAY);
 		
 		try {
-			this.mouse = ImageIO.read(getClass().getResource("Images/MouseSitting.png"));
+			this.mouse = ImageIO.read(getClass().getResource("Images/Cat.png"));
 		} catch (IOException e) {
 			this.mouse = null;
 		}
@@ -76,11 +70,7 @@ public class TopPanel extends JPanel{
 	
 	private static final int MESSAGE_STRIDE = 30;
 	
-	private static final int SMALL_OFFSET = 10;
-	
 	private static final int LARGE_OFFSET = 20;
-	
-	private static final int TIMER_HEIGHT = 10;
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -97,12 +87,12 @@ public class TopPanel extends JPanel{
 		g.setFont(TITLE_FONT);
 		g.setColor(Color.WHITE);
 		int borderWidth = 1;
-		g.drawString("A Mouse's Vengence", getWidth() / 2 - g.getFontMetrics().stringWidth("A Mouse's Vengence") / 2-borderWidth, 20-borderWidth);
-		g.drawString("A Mouse's Vengence", getWidth() / 2 - g.getFontMetrics().stringWidth("A Mouse's Vengence") / 2+borderWidth, 20+borderWidth);
-		g.drawString("A Mouse's Vengence", getWidth() / 2 - g.getFontMetrics().stringWidth("A Mouse's Vengence") / 2-borderWidth, 20+borderWidth);
-		g.drawString("A Mouse's Vengence", getWidth() / 2 - g.getFontMetrics().stringWidth("A Mouse's Vengence") / 2+borderWidth, 20-borderWidth);
+		g.drawString("Komi's Revenge!", getWidth() / 2 - g.getFontMetrics().stringWidth("Komi's Revenge!") / 2-borderWidth, 20-borderWidth);
+		g.drawString("Komi's Revenge!", getWidth() / 2 - g.getFontMetrics().stringWidth("Komi's Revenge!") / 2+borderWidth, 20+borderWidth);
+		g.drawString("Komi's Revenge!", getWidth() / 2 - g.getFontMetrics().stringWidth("Komi's Revenge!") / 2-borderWidth, 20+borderWidth);
+		g.drawString("Komi's Revenge!", getWidth() / 2 - g.getFontMetrics().stringWidth("Komi's Revenge!") / 2+borderWidth, 20-borderWidth);
 		g.setColor(Color.BLACK);
-		g.drawString("A Mouse's Vengence", getWidth() / 2 - g.getFontMetrics().stringWidth("A Mouse's Vengence") / 2, 20);
+		g.drawString("Komi's Revenge!", getWidth() / 2 - g.getFontMetrics().stringWidth("Komi's Revenge!") / 2, 20);
 		
 		/*
 		 * Draw the categories onto the window.

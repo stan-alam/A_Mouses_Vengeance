@@ -3,7 +3,6 @@
  */
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -97,8 +96,6 @@ public class RodentsRevengeGame extends JPanel {
 	private final int TIME_MOUSE_HOLE = FRAMES_PER_SECOND*6;
 
 	private int mouseInHole;
-
-	private static final int NUMBER_OF_CATS = 3;
 
 	private LinkedList<Point> cats;
 
@@ -267,7 +264,7 @@ public class RodentsRevengeGame extends JPanel {
 		} else {
 			int minBefore = this.gameClock.getMinutes();
 			if(this.cats.size() == 0){
-				this.gameClock.increment(this.FRAMES_PER_SECOND*10);
+				this.gameClock.increment(RodentsRevengeGame.FRAMES_PER_SECOND*10);
 			} else {
 				this.gameClock.increment();
 			}
@@ -351,7 +348,7 @@ public class RodentsRevengeGame extends JPanel {
 				}
 
 				this.catUpdateClock++;
-				if(this.catUpdateClock >= this.catTime){
+				if(this.catUpdateClock >= RodentsRevengeGame.catTime){
 					int sleepingCats = 0;
 					for(Point p: this.cats){
 						TileType catCollision = updateCat(p);
@@ -407,7 +404,7 @@ public class RodentsRevengeGame extends JPanel {
 	}
 
 	private void generateYarnBall(){
-		this.yarnBalls.addLast(new YarnBall(this.getRandomYarnPosition(), null, this.FRAMES_PER_SECOND));
+		this.yarnBalls.addLast(new YarnBall(this.getRandomYarnPosition(), null, RodentsRevengeGame.FRAMES_PER_SECOND));
 	}
 
 	private Point getRandomYarnPosition(){
@@ -619,20 +616,6 @@ public class RodentsRevengeGame extends JPanel {
 				}
 			}
 		}
-	}
-
-	private TileType updateCat2(Point p){
-		TileType result = null;
-		pf.parseBoard(this.board);
-		LinkedList<Node> path = pf.findPath(p, this.mouse);
-		if(path.size() >= 2){
-			board.setTile(p, null);
-			p.x = path.get(1).getX();
-			p.y = path.get(1).getY();
-			result = board.getTile(p.x, p.y);
-			board.setTile(p, TileType.Cat);
-		} 
-		return result;
 	}
 
 	private TileType updateCat(Point p){
@@ -1044,7 +1027,7 @@ public class RodentsRevengeGame extends JPanel {
 
 		this.timeTillYarnBallGeneration = this.levels.get(this.currentLevel).getFramesForYarnBallGeneration();
 
-		//		this.yarnBalls.addLast(new YarnBall(0, 0, null, this.FRAMES_PER_SECOND));
+		//		this.yarnBalls.addLast(new YarnBall(0, 0, null, RodentsRevengeGame.FRAMES_PER_SECOND));
 
 		/*
 		 * Clear the snake list and add the head.
@@ -1217,7 +1200,7 @@ public class RodentsRevengeGame extends JPanel {
 		l5.setNumOfWallsToGenerate(64);
 		l5.setNumOfBlocksToGenerate(64);
 		l5.setNumOfHolesToGenerate(11);
-		l5.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*10);
+		l5.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*10);
 		l5.setNumOfCatsPerRound(new int[]{1, 2});
 		l5.setTimePerRound(5);
 
@@ -1232,7 +1215,7 @@ public class RodentsRevengeGame extends JPanel {
 		}
 		l6.setNumOfBlocksToGenerate(64);
 		l6.setNumOfHolesToGenerate(16);
-		l6.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*10);
+		l6.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*10);
 
 		int maxEmpty = 6*(BoardPanel.COL_COUNT-2)+6*(BoardPanel.ROW_COUNT-8);
 		int index = random.nextInt(maxEmpty);
@@ -1263,7 +1246,7 @@ public class RodentsRevengeGame extends JPanel {
 		}
 		l7.setNumOfHolesToGenerate(5);
 		l7.setNumOfMouseTrapsToGenerate(1);
-		l7.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*10);
+		l7.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*10);
 		l7.setNumOfCatsPerRound(new int[]{1, 2});
 		l7.setTimePerRound(5);
 
@@ -1275,7 +1258,7 @@ public class RodentsRevengeGame extends JPanel {
 		}
 		l8.setNumOfHolesToGenerate(5);
 		l8.setNumOfMouseTrapsToGenerate(1);
-		l8.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*8);
+		l8.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*8);
 		l8.setNumOfCatsPerRound(new int[]{1, 2});
 		l8.setTimePerRound(5);
 
@@ -1284,7 +1267,7 @@ public class RodentsRevengeGame extends JPanel {
 		l9.setNumOfBlocksToGenerate(96);
 		l9.setNumOfHolesToGenerate(10);
 		l9.setNumOfMouseTrapsToGenerate(6);
-		l9.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*10);
+		l9.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*10);
 		l9.setNumOfCatsPerRound(new int[]{1, 2});
 		l9.setTimePerRound(5);
 
@@ -1299,7 +1282,7 @@ public class RodentsRevengeGame extends JPanel {
 		}
 		l10.setNumOfHolesToGenerate(17);
 		l10.setNumOfMouseTrapsToGenerate(10);
-		l10.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*8);
+		l10.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*8);
 		l10.setNumOfCatsPerRound(new int[]{1, 2});
 		l10.setTimePerRound(5);
 
@@ -1308,7 +1291,7 @@ public class RodentsRevengeGame extends JPanel {
 		l11.setNumOfBlocksToGenerate(58);
 		l11.setNumOfHolesToGenerate(11);
 		l11.setNumOfMouseTrapsToGenerate(11);
-		l11.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*5);
+		l11.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*5);
 		l11.setNumOfCatsPerRound(new int[]{1, 2});
 		l11.setTimePerRound(5);
 
@@ -1344,7 +1327,7 @@ public class RodentsRevengeGame extends JPanel {
 		l12.setNumOfBlocksToGenerate(67);
 		l12.setNumOfHolesToGenerate(19);
 		l12.setNumOfMouseTrapsToGenerate(16);
-		l12.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*6);
+		l12.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*6);
 		l12.setNumOfCatsPerRound(new int[]{1, 2});
 		l12.setTimePerRound(5);
 
@@ -1356,7 +1339,7 @@ public class RodentsRevengeGame extends JPanel {
 		}
 		l13.setNumOfHolesToGenerate(6);
 		l13.setNumOfMouseTrapsToGenerate(1);
-		l13.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*5);
+		l13.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*5);
 		l13.setNumOfCatsPerRound(new int[]{1, 2});
 		l13.setTimePerRound(5);
 
@@ -1369,7 +1352,7 @@ public class RodentsRevengeGame extends JPanel {
 		l14.setNumOfWallsToGenerate(1);
 		l14.setNumOfHolesToGenerate(16);
 		l14.setNumOfMouseTrapsToGenerate(11);
-		l14.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*4);
+		l14.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*4);
 		l14.setNumOfCatsPerRound(new int[]{1, 2});
 		l14.setTimePerRound(5);
 
@@ -1378,7 +1361,7 @@ public class RodentsRevengeGame extends JPanel {
 		l15.setNumOfBlocksToGenerate(95);
 		l15.setNumOfHolesToGenerate(12);
 		l15.setNumOfMouseTrapsToGenerate(6);
-		l15.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*4);
+		l15.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*4);
 		l15.setNumOfCatsPerRound(new int[]{1, 2});
 		l15.setTimePerRound(5);
 
@@ -1394,7 +1377,7 @@ public class RodentsRevengeGame extends JPanel {
 
 		l16.setNumOfHolesToGenerate(10);
 		l16.setNumOfMouseTrapsToGenerate(11);
-		l16.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*4);
+		l16.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*4);
 		l16.setNumOfCatsPerRound(new int[]{1, 2});
 		l16.setTimePerRound(5);
 
@@ -1403,7 +1386,7 @@ public class RodentsRevengeGame extends JPanel {
 		l17.setNumOfBlocksToGenerate(58);
 		l17.setNumOfHolesToGenerate(14);
 		l17.setNumOfMouseTrapsToGenerate(11);
-		l17.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*4);
+		l17.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*4);
 		l17.setNumOfCatsPerRound(new int[]{1, 2});
 		l17.setTimePerRound(5);
 
@@ -1419,7 +1402,7 @@ public class RodentsRevengeGame extends JPanel {
 		l18.setNumOfBlocksToGenerate(57);
 		l18.setNumOfHolesToGenerate(17);
 		l18.setNumOfMouseTrapsToGenerate(16);
-		l18.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*6);
+		l18.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*6);
 		l18.setNumOfCatsPerRound(new int[]{1, 2});
 		l18.setTimePerRound(5);
 		
@@ -1451,7 +1434,7 @@ public class RodentsRevengeGame extends JPanel {
 		l19.setNumOfMouseTrapsToGenerate(1);
 		l19.setNumOfHolesToGenerate(17);
 		l19.setNumOfMouseTrapsToGenerate(11);
-		l19.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*5);
+		l19.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*5);
 		l19.setNumOfCatsPerRound(new int[]{1, 2});
 		l19.setTimePerRound(5);
 
@@ -1464,7 +1447,7 @@ public class RodentsRevengeGame extends JPanel {
 		l20.setNumOfWallsToGenerate(1);
 		l20.setNumOfHolesToGenerate(17);
 		l20.setNumOfMouseTrapsToGenerate(11);
-		l20.setFramesForYarnBallGeneration(this.FRAMES_PER_SECOND*4);
+		l20.setFramesForYarnBallGeneration(RodentsRevengeGame.FRAMES_PER_SECOND*4);
 		l20.setNumOfCatsPerRound(new int[]{1, 2});
 		l20.setTimePerRound(5);
 
@@ -1489,28 +1472,6 @@ public class RodentsRevengeGame extends JPanel {
 		result.add(l19);
 		result.add(l20);
 		return result;
-	}
-
-	private void generateTileTypeNoneWall(int numOf, TileType t){
-		if(numOf > 0){
-			int maxEmpty = BoardPanel.COL_COUNT*BoardPanel.ROW_COUNT-board.getNumberOfWallTiles();
-			int index = random.nextInt(maxEmpty);
-
-			int freeFound = -1;
-			boolean placed = false;
-			for(int x = 0; x < BoardPanel.COL_COUNT && !placed; x++) {
-				for(int y = 0; y < BoardPanel.ROW_COUNT && !placed; y++) {
-					TileType type = board.getTile(x, y);
-					if(type != TileType.Wall) {
-						if(++freeFound == index) {
-							board.setTile(x, y, t);
-							placed = true;
-						}
-					}
-				}
-			}
-			generateTileTypeNoneWall(--numOf, t);
-		}
 	}
 
 	private void generateTilesNoneWallSpaces(int numOf, TileType t){
@@ -1605,28 +1566,6 @@ public class RodentsRevengeGame extends JPanel {
 		}
 	}
 
-	private void generateTileTypeEmptySpaces(int numOf, TileType t){
-		if(numOf > 0){
-			int maxEmpty = board.getNumberOfEmptySpaces();
-			int index = random.nextInt(maxEmpty);
-
-			int freeFound = -1;
-			boolean placed = false;
-			for(int x = 0; x < BoardPanel.COL_COUNT && !placed; x++) {
-				for(int y = 0; y < BoardPanel.ROW_COUNT && !placed; y++) {
-					TileType type = board.getTile(x, y);
-					if(type == null) {
-						if(++freeFound == index) {
-							board.setTile(x, y, t);
-							placed = true;
-						}
-					}
-				}
-			}
-			generateTileTypeEmptySpaces(--numOf, t);
-		}
-	}
-
 	private void generateCats(int numOfCats){
 		generateCatHelper(0, numOfCats);
 	}
@@ -1684,15 +1623,15 @@ public class RodentsRevengeGame extends JPanel {
 	public void changeDifficulty(Difficulty d){
 		switch(d){
 		case SLOW:
-			this.catTime = RodentsRevengeGame.FRAMES_PER_SECOND*2;
+			RodentsRevengeGame.catTime = RodentsRevengeGame.FRAMES_PER_SECOND*2;
 			this.gameClock.changeFramesPerSecond(RodentsRevengeGame.FRAMES_PER_SECOND*2);
 			break;
 		case MEDIUM:
-			this.catTime = RodentsRevengeGame.FRAMES_PER_SECOND;
+			RodentsRevengeGame.catTime = RodentsRevengeGame.FRAMES_PER_SECOND;
 			this.gameClock.changeFramesPerSecond(RodentsRevengeGame.FRAMES_PER_SECOND);
 			break;
 		case FAST:
-			this.catTime = RodentsRevengeGame.FRAMES_PER_SECOND/2;
+			RodentsRevengeGame.catTime = RodentsRevengeGame.FRAMES_PER_SECOND/2;
 			this.gameClock.changeFramesPerSecond(RodentsRevengeGame.FRAMES_PER_SECOND/2);
 			break;
 		default:
@@ -1733,7 +1672,7 @@ public class RodentsRevengeGame extends JPanel {
 
 			this.timeTillYarnBallGeneration = this.levels.get(this.currentLevel).getFramesForYarnBallGeneration();
 
-			//		this.yarnBalls.addLast(new YarnBall(0, 0, null, this.FRAMES_PER_SECOND));
+			//		this.yarnBalls.addLast(new YarnBall(0, 0, null, RodentsRevengeGame.FRAMES_PER_SECOND));
 
 			/*
 			 * Clear the snake list and add the head.

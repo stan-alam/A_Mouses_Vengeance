@@ -7,10 +7,7 @@ public enum TileType {
 	Mouse, MouseInHole, Cat, Block, Wall, Cheese, SleepingCat, MouseTrap, SinkHole, YarnBall;
 	
 	public boolean isBlock(){
-		if(this != null){
-			return this == Block;
-		}
-		return false;
+		return this == Block;
 	}
 	
 	public boolean isWall(){

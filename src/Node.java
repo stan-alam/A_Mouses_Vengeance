@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 /**
   The AStarNode class, along with the AStarSearch class,

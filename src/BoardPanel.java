@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.net.URL;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -113,11 +112,11 @@ public class BoardPanel extends JPanel {
 		setPreferredSize(new Dimension(COL_COUNT * TILE_SIZE, ROW_COUNT * TILE_SIZE));
 		setBackground(new Color(127, 128, 1));
 		try {
-			this.mouse = ImageIO.read(getClass().getResource("Images/Mouse2.png"));
+			this.mouse = ImageIO.read(getClass().getResource("Images/Cat.png"));
 			this.wall = ImageIO.read(getClass().getResource("Images/Wall.png"));
-			this.cat = ImageIO.read(getClass().getResource("Images/Cat.png"));
+			this.cat = ImageIO.read(getClass().getResource("Images/Mouse2.png"));
 			this.block = ImageIO.read(getClass().getResource("Images/block.png"));
-			this.sleepingCat  = ImageIO.read(getClass().getResource("Images/SleepingCat.png"));
+			this.sleepingCat  = ImageIO.read(getClass().getResource("Images/Mouse2.png"));
 			this.sinkHole = ImageIO.read(getClass().getResource("Images/SinkHole.png"));
 			this.MouseTrap = ImageIO.read(getClass().getResource("Images/MouseTrap.png"));
 			this.mouseInHole = ImageIO.read(getClass().getResource("Images/MouseInHole.png"));

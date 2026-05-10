@@ -16,11 +16,12 @@ public class RodentsRevengeJFrame extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					RodentsRevengeJFrame frame = new RodentsRevengeJFrame();
-					frame.startGame();
 					frame.setVisible(true);
+					frame.startGame();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -33,19 +34,27 @@ public class RodentsRevengeJFrame extends JFrame {
 	 */
 	public RodentsRevengeJFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("A Mouse's Vengence");
+		setTitle("Komi's Revenge!");
 		setResizable(false);
 		this.game = new RodentsRevengeGame();
 		contentPane = this.game;
 		contentPane.setBorder(null);
-		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setFocusable(true);
 		setContentPane(contentPane);
 		contentPane.setVisible(true);
+		bindGameKeys(contentPane);
 		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent e) {
+				contentPane.requestFocusInWindow();
+			}
+		});
+
 		menubar = new JMenuBar();
 		JMenu file = new JMenu("File");
 		JMenuItem newGame = new JMenuItem("New Game");
-		newGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
+		newGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK));
 		newGame.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -161,82 +170,77 @@ public class RodentsRevengeJFrame extends JFrame {
 		options.add(repeatLevel);
 		
 		menubar.add(options);
+		
+		JMenu about = new JMenu("About");
+		JMenuItem aboutItem = new JMenuItem("About Komi's Revenge!");
+		aboutItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(RodentsRevengeJFrame.this, 
+					"Komi's Revenge!\nBy Stan Alam for Win 94", 
+					"About", 
+					JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		about.add(aboutItem);
+		menubar.add(about);
 
 		this.setJMenuBar(menubar);
-		
-		/*
-		 * Adds a new key listener to the frame to process input. 
-		 */
-		addKeyListener(new KeyAdapter() {
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				switch(e.getKeyCode()) {
 
-				/*
-				 * If the game is not paused, and the game is not over...
-				 * 
-				 * Ensure that the direction list is not full, and that the most
-				 * recent direction is adjacent to North before adding the
-				 * direction to the list.
-				 */
-				case KeyEvent.VK_W:
-				case KeyEvent.VK_UP:
-					game.turn(Direction.North);
-					break;
-
-				/*
-				 * If the game is not paused, and the game is not over...
-				 * 
-				 * Ensure that the direction list is not full, and that the most
-				 * recent direction is adjacent to South before adding the
-				 * direction to the list.
-				 */	
-				case KeyEvent.VK_S:
-				case KeyEvent.VK_DOWN:
-					game.turn(Direction.South);
-					break;
-				
-				/*
-				 * If the game is not paused, and the game is not over...
-				 * 
-				 * Ensure that the direction list is not full, and that the most
-				 * recent direction is adjacent to West before adding the
-				 * direction to the list.
-				 */						
-				case KeyEvent.VK_A:
-				case KeyEvent.VK_LEFT:
-					game.turn(Direction.West);
-					break;
-			
-				/*
-				 * If the game is not paused, and the game is not over...
-				 * 
-				 * Ensure that the direction list is not full, and that the most
-				 * recent direction is adjacent to East before adding the
-				 * direction to the list.
-				 */		
-				case KeyEvent.VK_D:
-				case KeyEvent.VK_RIGHT:
-					game.turn(Direction.East);
-					break;
-					
-				
-				/*
-				 * Reset the game if one is not currently in progress.
-				 */
-				case KeyEvent.VK_ENTER:
-					game.enter();
-					break;
-				}
-			}
-			
-		});
-		
 		pack();
 		setLocationRelativeTo(null);
+		EventQueue.invokeLater(() -> contentPane.requestFocusInWindow());
 	}
-	
+
+	private void bindGameKeys(JComponent component) {
+		InputMap inputMap = component.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		ActionMap actionMap = component.getActionMap();
+
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0), "moveNorth");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "moveNorth");
+		actionMap.put("moveNorth", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				game.turn(Direction.North);
+			}
+		});
+
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0), "moveSouth");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "moveSouth");
+		actionMap.put("moveSouth", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				game.turn(Direction.South);
+			}
+		});
+
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0), "moveWest");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "moveWest");
+		actionMap.put("moveWest", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				game.turn(Direction.West);
+			}
+		});
+
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0), "moveEast");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "moveEast");
+		actionMap.put("moveEast", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				game.turn(Direction.East);
+			}
+		});
+
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "enterGame");
+		actionMap.put("enterGame", new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				game.enter();
+			}
+		});
+	}
+
 	private class LevelActionListener implements ActionListener{
 
 		private int l;
